@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fashion"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".Start">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:background="@color/design_default_color_primary_variant"
+            android:text="expand your market!"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#C58470"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="We will help you grow \n your business!"
+            android:textAlignment="center"
+            android:textColor="#C58470"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/startLoginBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/design_default_color_primary"
+                android:onClick="CallLoginScreen"
+                android:text="Log in"
+                android:transitionName="transationName"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/startRegisterBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/design_default_color_primary"
+                android:text="sign up"
+                android:textColor="@color/white"
+                android:onClick="CallRegisterScreen"
+                android:textSize="20sp"
+                android:transitionName="transitionScreen"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp">
+
+            <ImageView
+                android:id="@+id/copyright"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:src="@drawable/copyright"
+                app:tint="@color/design_default_color_primary" />
+
+            <TextView
+                android:id="@+id/connector"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Market Connector."
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Your Trusted Marketing App"
+            android:textColor="@color/design_default_color_primary"
+            android:textFontWeight="20"
+            android:textSize="23sp" />
+
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

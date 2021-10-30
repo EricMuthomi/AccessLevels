@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "104630340054",
+    "project_id": "acceevels-bd28c",
+    "storage_bucket": "acceevels-bd28c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104630340054:android:eea87f584adec246f9bc77",
+        "android_client_info": {
+          "package_name": "com.example.accesslevels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104630340054-sl20a539vhalg0dp9ohqhqc6bv9ru0d6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL0WTx8ROl45OoSjpBYYbk6w68UOd3bRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104630340054-sl20a539vhalg0dp9ohqhqc6bv9ru0d6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
