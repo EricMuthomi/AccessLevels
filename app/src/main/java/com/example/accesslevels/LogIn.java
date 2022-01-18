@@ -2,6 +2,7 @@ package com.example.accesslevels;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +29,8 @@ import java.util.Map;
 
 public class LogIn extends AppCompatActivity {
     private ImageView previousPage;
-    private Button signIn,notRegistered;
+    private Button notRegistered;
+    CardView signIn;
     TextInputLayout loginEmail,loginPassword,loginConfirmPwd;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;

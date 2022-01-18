@@ -1,10 +1,16 @@
 package com.example.accesslevels;
 
+import static com.example.accesslevels.R.color.design_default_color_primary;
+import static com.example.accesslevels.R.color.design_default_color_primary_variant;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +32,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    Button registerBtn, buttonSignUpReg;
-    TextInputLayout username,email,phone,password,confirmPwd;
+    Button buttonSignUpReg;
+    TextInputLayout username,email,phone,password;
+    CardView registerBtn;
     ImageView backBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    ProgressDialog progressDialog;
     CheckBox buy,sell;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,6 @@ public class Register extends AppCompatActivity {
         email = findViewById(R.id.regEmail);
         phone = findViewById(R.id.regPhone);
         password = findViewById(R.id.regPwd);
-        confirmPwd = findViewById(R.id.regConfPwd);
 
         buy=findViewById(R.id.isBuyer);
         sell=findViewById(R.id.isAdmin);
@@ -85,14 +90,15 @@ public class Register extends AppCompatActivity {
                 validateEmail(email);
                 validatePhone(phone);
                 validatePassword(password);
-                validateConfirmPwd(confirmPwd);
                 validateCheckboxes();
 
                 if (!validateUsername(username) | !validateEmail(email) | !validatePhone(phone)
-                        | !validatePassword(password) | !validateConfirmPwd(confirmPwd)|!validateCheckboxes())
+                        | !validatePassword(password)|!validateCheckboxes())
                 {
                     return;
-                } else {
+                }
+
+                else {
                     UserRegistrationFunction();
                 }
 
@@ -184,7 +190,7 @@ public class Register extends AppCompatActivity {
            }
        });
 
-    }
+    }//Here,we create user account and assign him/her to the specific activities
 
     private void adminPanelMethod()
     {
@@ -193,14 +199,14 @@ public class Register extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(),AdminPanel.class));
             finish();
         }
-    }
+    }//if the sell checkbox is checked,the user is directed to the admin panel
 
     private void mainActivityMethod()
     {       if (buy.isChecked())
         {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
-    }
+    }//if the buy checkbox is checked,the user is directed to the main activity panel
 
     //validate user inputs
     private boolean validateUsername(TextInputLayout username)
@@ -233,15 +239,9 @@ public class Register extends AppCompatActivity {
     private boolean validateEmail(TextInputLayout email)
     {
         String val=email.getEditText().getText().toString().trim();
-        String emailMatcher="a-zA-Z0-9._-]+@[a-z]+\\\\.+[a-z]+";
         if (val.isEmpty()|| val.length()== 0)
         {
             email.setError("Field is empty!");
-            return false;
-        }
-        else if (val.matches(emailMatcher))
-        {
-            email.setError("Provide a valid email address");
             return false;
         }
 
@@ -268,76 +268,27 @@ public class Register extends AppCompatActivity {
                 return true;
             }
     }
-    private boolean validatePassword(TextInputLayout password)
-    {
-        String val=password.getEditText().getText().toString().trim();
-        String checkPassword=" ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{6,15}$";
-//        1.Password must contain at least one digit [0-9].
-//        2.Password must contain at least one lowercase Latin character [a-z].
-//        3.Password must contain at least one uppercase Latin character [A-Z].
-//        4.Password must contain at least one special character like ! @ # & ( ).
-//        5.Password must contain a length of at least 8 characters and a maximum of 20 characters.
 
-        if (val.isEmpty())
+    private boolean validatePassword(TextInputLayout password) {
+        String passwordVal = password.getEditText().getText().toString().trim();
+
+        if (passwordVal.isEmpty())
         {
             password.setError("Field is empty!");
             return false;
         }
-        else if (val.length()<6||val.length()>15)
+        //Checks if the password is more than 6 characters
+        if (passwordVal.length() < 6 || passwordVal.length() > 15)
         {
-            password.setError("Password should be 6-15 characters long");
+            password.setError("Password should be between 6-15 characters!");
             return false;
+        } else {
+            password.setError(null);
+            password.setErrorEnabled(false);
+            return true;
         }
-        else if(!val.matches(checkPassword))
-        {
-        password.setError("Password should contain at least 6 characters" + "\n" +
-                "Password should contain at least one lowercase letter" + "\n" +
-                "Password should contain at least one uppercase letter" + "\n" +
-                "Password should contain at least one special character like @ ! # &" +"\n"+
-                "Password should be between 6 to 15 characters long");
-        }
-        password.setError(null);
-        password.setErrorEnabled(false);
-        return true;
-
     }
-    private boolean validateConfirmPwd(TextInputLayout confirmPwd)
-    {
-        String val=confirmPwd.getEditText().getText().toString().trim();
-        String checkPassword=" ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{6,15}$";
-//        1.Password must contain at least one digit [0-9].
-//        2.Password must contain at least one lowercase Latin character [a-z].
-//        3.Password must contain at least one uppercase Latin character [A-Z].
-//        4.Password must contain at least one special character like ! @ # & ( ).
-//        5.Password must contain a length of at least 8 characters and a maximum of 20 characters.
-        if (val.isEmpty())
-        {
-            confirmPwd.setError("Field is empty!");
-            if (!val.equals(password))
-            {
-                confirmPwd.setError("Password do not match!");
-            }
-            return false;
-        }
 
-        else if (val.length()<6||val.length()>15)
-        {
-            confirmPwd.setError("Password should be 6-15 characters long");
-            return false;
-        }
-        else if(!val.matches(checkPassword))
-        {
-            confirmPwd.setError("Password should contain at least 6 characters" + "\n" +
-                    "Password should contain at least one lowercase letter" + "\n" +
-                    "Password should contain at least one uppercase letter" + "\n" +
-                    "Password should contain at least one special character like @ ! # &" +"\n"+
-                    "Password should be between 6 to 15 characters long");
-        }
-        else confirmPwd.setError(null);
-        confirmPwd.setErrorEnabled(false);
-        return true;
-
-    }
     private boolean validateCheckboxes()
     {
         if (!(buy.isChecked()||sell.isChecked()))
